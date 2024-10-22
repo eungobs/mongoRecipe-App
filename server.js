@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const recipeRoutes = require('./routes/recipeRoutes');
+const authRoutes = require('./routes/authRoutes'); // Import authentication routes
 const errorHandler = require('./middleware/errorHandler'); // Import the error handler
 
 // Load environment variables
@@ -18,6 +19,9 @@ app.use(express.json());
 
 // Recipe routes
 app.use('/api/recipes', recipeRoutes);
+
+// Authentication routes
+app.use('/api/auth', authRoutes); // All auth routes will be prefixed with /api/auth
 
 // Error handling middleware - catches all errors
 app.use(errorHandler); 

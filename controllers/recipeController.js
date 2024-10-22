@@ -16,9 +16,11 @@ const recipeController = {
       const newRecipe = await createRecipe(req.body); // Call the createRecipe function
       res.status(201).json(newRecipe); // Return the created recipe
     } catch (error) {
-      next(new CustomError('Failed to create recipe', 400)); // Pass to error handler
+      // next(new CustomError('Failed to create recipe', 400));
+      res.status(500).json({message: error.message})
     }
   },
+
 
   // Get all recipes with pagination
   getRecipes: async (req, res, next) => {

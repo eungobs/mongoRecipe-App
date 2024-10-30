@@ -1,4 +1,3 @@
-// models/recipeModel.js
 const mongoose = require("mongoose");
 
 const recipeSchema = new mongoose.Schema({
@@ -7,14 +6,21 @@ const recipeSchema = new mongoose.Schema({
     required: true,
   },
   ingredients: {
-    type: [String], // Array of strings
+    type: [String], // Changed to an array of strings
     required: true,
   },
   instructions: {
     type: String,
     required: true,
   },
+  createdBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User', // Reference to the User model
+    required: true, // Ensure this field is required
+  },
 });
 
-module.exports = mongoose.model("Recipe", recipeSchema);
+// Export the Recipe model
+const Recipe = mongoose.model("Recipe", recipeSchema);
+module.exports = Recipe;
 
